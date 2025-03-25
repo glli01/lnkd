@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Linkd",
+  title: "Lnkd",
   description: "A linkedin games calc",
 };
 

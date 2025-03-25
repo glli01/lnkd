@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card } from "@/components/ui/card"
-import { ArrowLeft, Calculator, Clock } from "lucide-react"
-import Link from "next/link"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
+import { ArrowLeft, Calculator, Clock } from "lucide-react";
+import Link from "next/link";
 
 export default function ScoreCalculator() {
   const [scores, setScores] = useState({
@@ -17,43 +17,43 @@ export default function ScoreCalculator() {
     tango: "",
     zip: "",
     backtracks: "",
-  })
+  });
 
-  const [calculatedScore, setCalculatedScore] = useState<number | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [calculatedScore, setCalculatedScore] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [formulaBreakdown, setFormulaBreakdown] = useState<{
-    queensPart: string
-    tangoPart: string
-    zipPart: string
-    backtracksPart: string
-    total: number
-  } | null>(null)
+    queensPart: string;
+    tangoPart: string;
+    zipPart: string;
+    backtracksPart: string;
+    total: number;
+  } | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setScores((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setScores((prev) => ({ ...prev, [name]: value }));
+  };
 
   const calculateScore = () => {
     // Show loading state
-    setIsLoading(true)
-    setFormulaBreakdown(null)
+    setIsLoading(true);
+    setFormulaBreakdown(null);
 
     // Simulate API call or complex calculation
     setTimeout(() => {
       // Parse input values
-      const queensTime = Number.parseFloat(scores.queens) || 0
-      const tangoTime = Number.parseFloat(scores.tango) || 0
-      const zipTime = Number.parseFloat(scores.zip) || 0
-      const zipBacktracks = Number.parseInt(scores.backtracks) || 0
+      const queensTime = Number.parseFloat(scores.queens) || 0;
+      const tangoTime = Number.parseFloat(scores.tango) || 0;
+      const zipTime = Number.parseFloat(scores.zip) || 0;
+      const zipBacktracks = Number.parseInt(scores.backtracks) || 0;
 
       // Calculate using the formula: Score = (Queens time x 1.5) + (Tango time) + (Zip time) + (Zip backtracks x 3)
-      const queensScore = queensTime * 1.5
-      const tangoScore = tangoTime
-      const zipScore = zipTime
-      const backtracksScore = zipBacktracks * 3
+      const queensScore = queensTime * 1.5;
+      const tangoScore = tangoTime;
+      const zipScore = zipTime;
+      const backtracksScore = zipBacktracks * 3;
 
-      const total = queensScore + tangoScore + zipScore + backtracksScore
+      const total = queensScore + tangoScore + zipScore + backtracksScore;
 
       // Create formula breakdown
       setFormulaBreakdown({
@@ -62,21 +62,24 @@ export default function ScoreCalculator() {
         zipPart: `${zipTime}`,
         backtracksPart: `(${zipBacktracks} × 3)`,
         total: Number.parseFloat(total.toFixed(1)),
-      })
+      });
 
-      setCalculatedScore(Number.parseFloat(total.toFixed(1)))
-      setIsLoading(false)
-    }, 1500)
-  }
+      setCalculatedScore(Number.parseFloat(total.toFixed(1)));
+      setIsLoading(false);
+    }, 1500);
+  };
 
   // CSS class to hide number input spinners
   const noSpinnerClass =
-    "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+    "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900">
       <div className="container mx-auto px-4 py-12">
-        <Link href="/" className="inline-flex items-center text-blue-600 dark:text-blue-300 mb-8 hover:underline">
+        <Link
+          href="/"
+          className="inline-flex items-center text-blue-600 dark:text-blue-300 mb-8 hover:underline"
+        >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Home
         </Link>
@@ -106,7 +109,10 @@ export default function ScoreCalculator() {
                   Queens Time
                 </Label>
                 <div className="relative">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Input
                       id="queens"
                       name="queens"
@@ -136,7 +142,10 @@ export default function ScoreCalculator() {
                   Tango Time
                 </Label>
                 <div className="relative">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Input
                       id="tango"
                       name="tango"
@@ -163,7 +172,10 @@ export default function ScoreCalculator() {
                   Zip Time
                 </Label>
                 <div className="relative">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Input
                       id="zip"
                       name="zip"
@@ -189,7 +201,10 @@ export default function ScoreCalculator() {
                   Backtracks
                 </Label>
                 <div className="relative">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Input
                       id="backtracks"
                       name="backtracks"
@@ -253,30 +268,56 @@ export default function ScoreCalculator() {
                   <div className="mt-4 font-mono text-center">
                     <div className="flex justify-center items-end space-x-2 text-sm">
                       <div className="flex flex-col items-center">
-                        <span className="text-blue-800 dark:text-blue-200">{formulaBreakdown.queensPart}</span>
-                        <span className="text-xs text-blue-600/60 dark:text-blue-400/60 mt-1">Queens</span>
+                        <span className="text-blue-800 dark:text-blue-200">
+                          {formulaBreakdown.queensPart}
+                        </span>
+                        <span className="text-xs text-blue-600/60 dark:text-blue-400/60 mt-1">
+                          Queens
+                        </span>
                       </div>
-                      <span className="text-gray-500 dark:text-gray-400">+</span>
+                      <span className="text-gray-500 dark:text-gray-400">
+                        +
+                      </span>
                       <div className="flex flex-col items-center">
-                        <span className="text-purple-800 dark:text-purple-200">{formulaBreakdown.tangoPart}</span>
-                        <span className="text-xs text-purple-600/60 dark:text-purple-400/60 mt-1">Tango</span>
+                        <span className="text-purple-800 dark:text-purple-200">
+                          {formulaBreakdown.tangoPart}
+                        </span>
+                        <span className="text-xs text-purple-600/60 dark:text-purple-400/60 mt-1">
+                          Tango
+                        </span>
                       </div>
-                      <span className="text-gray-500 dark:text-gray-400">+</span>
+                      <span className="text-gray-500 dark:text-gray-400">
+                        +
+                      </span>
                       <div className="flex flex-col items-center">
-                        <span className="text-indigo-800 dark:text-indigo-200">{formulaBreakdown.zipPart}</span>
-                        <span className="text-xs text-indigo-600/60 dark:text-indigo-400/60 mt-1">Zip</span>
+                        <span className="text-indigo-800 dark:text-indigo-200">
+                          {formulaBreakdown.zipPart}
+                        </span>
+                        <span className="text-xs text-indigo-600/60 dark:text-indigo-400/60 mt-1">
+                          Zip
+                        </span>
                       </div>
-                      <span className="text-gray-500 dark:text-gray-400">+</span>
+                      <span className="text-gray-500 dark:text-gray-400">
+                        +
+                      </span>
                       <div className="flex flex-col items-center">
                         <span className="text-indigo-800/80 dark:text-indigo-200/80">
                           {formulaBreakdown.backtracksPart}
                         </span>
-                        <span className="text-xs text-indigo-600/50 dark:text-indigo-400/50 mt-1">Backtracks</span>
+                        <span className="text-xs text-indigo-600/50 dark:text-indigo-400/50 mt-1">
+                          Backtracks
+                        </span>
                       </div>
-                      <span className="text-gray-500 dark:text-gray-400">=</span>
+                      <span className="text-gray-500 dark:text-gray-400">
+                        =
+                      </span>
                       <div className="flex flex-col items-center">
-                        <span className="font-bold text-blue-800 dark:text-blue-200">{formulaBreakdown.total}</span>
-                        <span className="text-xs text-blue-600/60 dark:text-blue-400/60 mt-1">Total</span>
+                        <span className="font-bold text-blue-800 dark:text-blue-200">
+                          {formulaBreakdown.total}
+                        </span>
+                        <span className="text-xs text-blue-600/60 dark:text-blue-400/60 mt-1">
+                          Total
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -287,6 +328,5 @@ export default function ScoreCalculator() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }
-
