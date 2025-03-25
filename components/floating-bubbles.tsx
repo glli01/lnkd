@@ -116,7 +116,7 @@ export default function FloatingBubblesBackground({
                        dark:from-blue-600/30 dark:to-purple-600/30 p-px rounded-2xl backdrop-blur-lg 
                        overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            <Link href="/lnkd/score-calculator">
+            <Link href="/score-calculator">
               <Button
                 variant="ghost"
                 className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
